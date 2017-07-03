@@ -1,37 +1,93 @@
-var userArray = [
-  
-  {
-    name: 'Yan Hong',
-    age: 26,
-    school: 'SFU',
-    skills: ['HTML', 'CSS', 'JavaScript'],
-    isPublic: true,
-    flag: 0
-  },
-  
-  {
-    name: 'Neo Wang',
-    age: 26,
-    school: 'UBC',
-    skills: ['Python', 'CSS', 'JavaScript'],
-    isPublic: true,
-    flag: 0
-  },
-  
-  {
-    name: 'Ben Sun',
-    age: 30,
-    school: 'SFU',
-    skills: ['Logo Design', 'VI', 'UIUX', 'Branding'],
-    isPublic: false,
-    flag: 0
-  },
-  
-];
+
 
 /*
 $('.search-btn').click(function(){
 */
+$('#fetch-all').click(function() {
+
+ $.get('https://webdxd-student-api.herokuapp.com/student/', function(response) {
+
+     console.log(response)
+     $('#user-container').html("")
+     for(var i = 0; i<response.length; i++){
+     		var userContainer = $('<div>').addClass('user').attr("id",response[i]._id)
+     		$('<h1>').text(response[i].name).appendTo(userContainer)
+
+     		$('#user-container').append(userContainer)
+
+
+     }
+
+ })
+})
+
+
+
+$("#user-container").on('click', '.user',function(event){
+
+	var uid = $(this).attr('id')
+	$.get('https://webdxd-student-api.herokuapp.com/student/' + uid, function(response){
+
+		 console.log(response)
+
+   		 $('.detail-info').empty()
+
+   		 var detailInfo = $('<p class="detail-info">')
+   		 $('<h2>').text(response.age).appendTo(detailInfo)
+   		 $('<h2>').text(response.school).appendTo(detailInfo)
+   		 $('#' + uid).append(detailInfo)
+
+	})
+
+})
+
+
+$('#submit-form').click(function(){
+
+	var newStudent = {
+
+		"name": $('#sname').val(),
+		"age": $('#sage').val(),
+		"school": $('#sschool').val()
+
+	}
+	console.log(newStudent)
+	$.ajax({
+		type: 'POST',
+		url: 'https://webdxd-student-api.herokuapp.com/new',
+		data: JSON.stringify(newStudent),
+		success: function(data) { console.log(data) },
+        contentType: "application/json",
+     	dataType: 'json'
+
+	})
+
+})
+
+// $.get('https://webdxd-student-api.herokuapp.com/student/', function(response) {
+
+//      console.log(response)
+//     // $('#user-container').html("")
+//      for(var i = 0; i<response.length; i++){
+     		
+//      		$("#"+response[i].name).click(function() {
+
+//      			 $('#user-container').html("")
+// 			     for(var i = 0; i<response.length; i++){
+// 			     		var userContainer = $('<div>').addClass('user')
+// 			     		$('<h1>').text(response[i].name).appendTo(userContainer)
+// 			     		$('<h2>').text(response[i].id).appendTo(userContainer)
+// 			     		$('#user-container').append(userContainer)
+
+// 			     }
+// 			})     
+
+//      }
+
+// })
+
+
+
 
 $(".search-input").keyup(function() {	
 	$('#user-container').html("")

@@ -54,23 +54,23 @@ body{
 .inline-block{
     display: inline-block;
 }
-form label, form input{
+form label, form input, .form label, .form input{
     display:block;
 }
-form label{
+form label, .form label{
     font-size: 18px;
     margin-top: 15px;
 }
-form input, form textarea, form button{
+form input, form textarea, form button, .form input, .form textarea, .form button{
     width: 100%;
     height: 52px;
     border-radius: 10px;
     border: 2px solid #b2b2b2;
 }
-form textarea{
+form textarea, .form textarea{
     height: 200px;
 }
-form button{
+form button, .form button{
     margin-top: 30px;
     color:white;
     font-size: 18px;
@@ -82,7 +82,7 @@ form button{
         background-color: red;
     }
 }
-form{
+form, .form{
     width: 30%;
     min-width: 300px;
     margin-left:auto;
@@ -206,7 +206,7 @@ footer{
     color: white;
 }
 
-.search-input, .search-btn {
+.search-input, .search-btn, .fetch-all {
     padding: 10px;
     font-size: 1.5rem;
     margin: 10px;
@@ -214,7 +214,7 @@ footer{
     border: 1px solid white;
 }
 
-.search-btn {
+.search-btn, .fetch-all {
     background-color: #26ABFF;
     color: white;
 }
