@@ -87,7 +87,7 @@ $('#submit-form').click(function(){
 // })
 
 
-
+// Search Function has to be changed
 
 $(".search-input").keyup(function() {	
 	$('#user-container').html("")
