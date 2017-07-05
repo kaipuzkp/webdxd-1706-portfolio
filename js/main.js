@@ -3,6 +3,9 @@
 /*
 $('.search-btn').click(function(){
 */
+//Fetch Function///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 $('#fetch-all').click(function() {
 
  $.get('https://webdxd-student-api.herokuapp.com/student/', function(response) {
@@ -12,7 +15,7 @@ $('#fetch-all').click(function() {
      for(var i = 0; i<response.length; i++){
      		var userContainer = $('<div>').addClass('user').attr("id",response[i]._id)
      		$('<h1>').text(response[i].name).appendTo(userContainer)
-
+     		//$('<button>').addClass('delBtn').attr("id","_delete").text("Delete").appendTo(userContainer)
      		$('#user-container').append(userContainer)
 
 
@@ -21,6 +24,9 @@ $('#fetch-all').click(function() {
  })
 })
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Show Detail Function///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 $("#user-container").on('click', '.user',function(event){
@@ -32,14 +38,55 @@ $("#user-container").on('click', '.user',function(event){
 
    		 $('.detail-info').empty()
 
-   		 var detailInfo = $('<p class="detail-info">')
+   		 var detailInfo = $('<div class="detail-info">')
    		 $('<h2>').text(response.age).appendTo(detailInfo)
    		 $('<h2>').text(response.school).appendTo(detailInfo)
+   		 $('<button>').addClass('delBtn').attr("id","_delete").text("Delete").appendTo(detailInfo)
    		 $('#' + uid).append(detailInfo)
 
 	})
 
+
+
+	// $('#_delete').click(function(){
+		
+	// 	console.log("111111111")
+
+	// })
+
+
 })
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Delete Function////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$("#user-container").on('click', '.delBtn',function(event){
+	var uid = $(this).parent().parent().attr('id')
+		console.log(uid)
+		console.log('clicked')
+			$.ajax({
+				type: 'DELETE',
+				url: 'https://webdxd-student-api.herokuapp.com/student/'+uid,
+				success: function(data) { console.log(data) },
+		        contentType: "application/json",
+		     	dataType: 'json'
+			})
+	$('#'+uid).remove()
+
+
+})
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Submit button for Create new Contract//////////////////////////////////////////////////////////////////////////////////////
 
 
 $('#submit-form').click(function(){
@@ -63,6 +110,8 @@ $('#submit-form').click(function(){
 	})
 
 })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // $.get('https://webdxd-student-api.herokuapp.com/student/', function(response) {
 
@@ -86,8 +135,7 @@ $('#submit-form').click(function(){
 
 // })
 
-
-// Search Function has to be changed
+//Search Function has to be changed////////////////////////////////////////////////////////////////////////////////////////////
 
 $(".search-input").keyup(function() {	
 	$('#user-container').html("")
@@ -143,3 +191,5 @@ $(".search-input").keyup(function() {
 	 }
 
 })
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
