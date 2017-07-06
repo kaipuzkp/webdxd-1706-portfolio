@@ -219,14 +219,12 @@ footer{
     color: white;
 }
 
-/*.delBtn{
-    color:black,
+.delBtn{
+    color:black;
     background-color:rgba(255,255,255,.5);
     border-radius: 5px;
     font-size:1rem;
     padding:5px;
     border: 1px solid black;
 
-}*/
-
-
+}

@@ -41,21 +41,15 @@ $("#user-container").on('click', '.user',function(event){
    		 var detailInfo = $('<div class="detail-info">')
    		 $('<h2>').text(response.age).appendTo(detailInfo)
    		 $('<h2>').text(response.school).appendTo(detailInfo)
-   		 $('<button>').addClass('delBtn').attr("id","_delete").text("Delete").appendTo(detailInfo)
+		 $('<button>').addClass('delBtn').attr("id","delBtn").text("Delete").appendTo(detailInfo)
+   		
    		 $('#' + uid).append(detailInfo)
 
 	})
 
 
-
-	// $('#_delete').click(function(){
-		
-	// 	console.log("111111111")
-
-	// })
-
-
 })
+
 
 
 
@@ -67,6 +61,8 @@ $("#user-container").on('click', '.delBtn',function(event){
 	var uid = $(this).parent().parent().attr('id')
 		console.log(uid)
 		console.log('clicked')
+		if(confirm('This action will permanently delete current Contract! Are you sure?')){
+  
 			$.ajax({
 				type: 'DELETE',
 				url: 'https://webdxd-student-api.herokuapp.com/student/'+uid,
@@ -74,17 +70,36 @@ $("#user-container").on('click', '.delBtn',function(event){
 		        contentType: "application/json",
 		     	dataType: 'json'
 			})
-	$('#'+uid).remove()
-
+			$('#'+uid).remove()
+		}
 
 })
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Update Function////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// $("#user-container").on('click', '.delBtn',function(event){
+// 	var uid = $(this).parent().parent().attr('id')
+// 		console.log(uid)
+// 		console.log('clicked')
+// 		if(confirm('This action will permanently delete current Contract! Are you sure?')){
+  
+// 			$.ajax({
+// 				type: 'DELETE',
+// 				url: 'https://webdxd-student-api.herokuapp.com/student/'+uid,
+// 				success: function(data) { console.log(data) },
+// 		        contentType: "application/json",
+// 		     	dataType: 'json'
+// 			})
+// 			$('#'+uid).remove()
+// 		}
+
+// })
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //Submit button for Create new Contract//////////////////////////////////////////////////////////////////////////////////////
 
