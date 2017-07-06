@@ -80,23 +80,23 @@ $("#user-container").on('click', '.delBtn',function(event){
 
 //Update Function////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// $("#user-container").on('click', '.delBtn',function(event){
-// 	var uid = $(this).parent().parent().attr('id')
-// 		console.log(uid)
-// 		console.log('clicked')
-// 		if(confirm('This action will permanently delete current Contract! Are you sure?')){
+$("#user-container").on('click', '.delBtn',function(event){
+	var uid = $(this).parent().parent().attr('id')
+		console.log(uid)
+		console.log('clicked')
+		if(confirm('This action will permanently delete current Contract! Are you sure?')){
   
-// 			$.ajax({
-// 				type: 'DELETE',
-// 				url: 'https://webdxd-student-api.herokuapp.com/student/'+uid,
-// 				success: function(data) { console.log(data) },
-// 		        contentType: "application/json",
-// 		     	dataType: 'json'
-// 			})
-// 			$('#'+uid).remove()
-// 		}
+			$.ajax({
+				type: 'DELETE',
+				url: 'https://webdxd-student-api.herokuapp.com/student/'+uid,
+				success: function(data) { console.log(data) },
+		        contentType: "application/json",
+		     	dataType: 'json'
+			})
+			$('#'+uid).remove()
+		}
 
-// })
+})
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
