@@ -105,24 +105,34 @@ $("#user-container").on('click', '.delBtn',function(event){
 
 
 $('#submit-form').click(function(){
+	if(!($("#sname").val()=="") || !($("#sage").val()=="") || !($("#sschool").val()=="") ){
+		var newStudent = {
 
-	var newStudent = {
+			"name": $('#sname').val(),
+			"age": $('#sage').val(),
+			"school": $('#sschool').val()
 
-		"name": $('#sname').val(),
-		"age": $('#sage').val(),
-		"school": $('#sschool').val()
+		}
+		var clearText = function(id) {
+	        $(id).val("");
+	      }
 
+	      clearText('#sname');
+	      clearText('#sage');
+	      clearText('#sschool');
+
+
+		console.log(newStudent)
+		$.ajax({
+			type: 'POST',
+			url: 'https://webdxd-student-api.herokuapp.com/new',
+			data: JSON.stringify(newStudent),
+			success: function(data) { console.log(data) },
+	        contentType: "application/json",
+	     	dataType: 'json'
+
+		})
 	}
-	console.log(newStudent)
-	$.ajax({
-		type: 'POST',
-		url: 'https://webdxd-student-api.herokuapp.com/new',
-		data: JSON.stringify(newStudent),
-		success: function(data) { console.log(data) },
-        contentType: "application/json",
-     	dataType: 'json'
-
-	})
 
 })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
